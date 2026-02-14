@@ -1,0 +1,33 @@
+function respuestaSi() {
+    const frases = [
+        "Te amo 💖",
+        "Eres mi todo 💕",
+        "Feliz San Valentín 💘",
+        "Siempre contigo 🌸",
+        "Mi persona favorita ❤️",
+        "Contigo todo ✨"
+    ];
+
+    setInterval(() => {
+        const texto = document.createElement("div");
+        texto.className = "frase";
+        texto.innerText = frases[Math.floor(Math.random() * frases.length)];
+
+        texto.style.left = Math.random() * window.innerWidth + "px";
+        texto.style.top = "-30px";
+
+        document.body.appendChild(texto);
+
+        let y = -30;
+        const bajar = setInterval(() => {
+            y += 3;
+            texto.style.top = y + "px";
+
+            if (y > window.innerHeight) {
+                clearInterval(bajar);
+                texto.remove();
+            }
+        }, 20);
+
+    }, 120);
+}

@@ -1,0 +1,7 @@
+.frase {
+    position: fixed;
+    color: black;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 9999;
+}

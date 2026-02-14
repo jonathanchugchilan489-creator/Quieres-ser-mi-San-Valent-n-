@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',Arial,sans-serif;
+  background:linear-gradient(180deg,#f7b6c8,#ffd1dc);
+  color:#000;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+.pantalla{
+  display:none;
+  padding:40px;
+  min-height:100vh;
+}
+
+.activa{display:block;}
+
+button{
+  padding:15px 28px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  margin:15px;
+  transition:.3s;
+}
+
+.rojo{
+  background:#e63946;
+  color:white;
+}
+
+.rojo:hover{
+  transform:scale(1.1);
+}
+
+.carta{
+  background:white;
+  max-width:650px;
+  margin:30px auto;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,.25);
+  animation:aparecer 1.2s ease;
+}
+
+@keyframes aparecer{
+  from{opacity:0;transform:translateY(30px) scale(.9);}
+  to{opacity:1;transform:none;}
+}
+
+.corazones span{
+  position:fixed;
+  bottom:-30px;
+  font-size:20px;
+  animation:subir 8s linear infinite;
+  opacity:.7;
+}
+
+@keyframes subir{
+  from{transform:translateY(0);}
+  to{transform:translateY(-110vh);}
+}
+
+.final span{
+  display:inline-block;
+  margin:10px;
+  font-size:22px;
+  animation:latir 1.5s infinite alternate;
+}
+
+@keyframes latir{
+  from{transform:scale(1);}
+  to{transform:scale(1.15);}
+}
+
+h1{margin-top:40px;}
+</style>
+</head>
+
+<body>
+
+<audio id="music" src="music.mp3" loop></audio>
+
+<!-- CORAZONES FONDO -->
+<div class="corazones">
+  <span style="left:10%">❤️</span>
+  <span style="left:25%">💖</span>
+  <span style="left:40%">❤️</span>
+  <span style="left:60%">💗</span>
+  <span style="left:75%">❤️</span>
+  <span style="left:90%">💞</span>
+</div>
+
+<!-- PANTALLA 1 -->
+<div class="pantalla activa" id="p1">
+  <h1>❤️ Para el amor de mi vida ❤️</h1>
+  <p>Toca el corazón</p>
+  <button class="rojo" onclick="ir(2)">Aplasta aquí 💖</button>
+</div>
+
+<!-- PANTALLA 2 -->
+<div class="pantalla" id="p2">
+  <h2>Mi amor por ti comenzó hace…</h2>
+  <h3 id="contador"></h3>
+
+  <p>
+    Siento que mi vida empezó el día que te conocí.<br>
+    Si tuviera que escoger un momento para vivir siempre,<br>
+    escogería cuando estoy en tus brazos, mi lugar seguro.<br>
+    Cada segundo contigo, te amo más.
+  </p>
+
+  <button class="rojo" onclick="ir(3)">Siguiente ❤️</button>
+</div>
+
+<!-- PANTALLA 3 CARTA -->
+<div class="pantalla" id="p3">
+  <h1>✉️ Para ti</h1>
+
+  <div class="carta">
+    Si yo fuera poeta y tú mi inspiración,<br>
+    escribiría mil versos para ganarme tu corazón.<br><br>
+
+    Miraría al cielo intentando percibir tu bello olor,<br>
+    en vez de darte un regalo te daría mi corazón.<br><br>
+
+    Tu nombre en mi mente y mi libreta estarán,<br>
+    al cerrar mis ojos tu cara destacará.<br><br>
+
+    Tatuada en mi mente siempre estarás,<br>
+    al dormir en mis sueños aparecerás.<br><br>
+
+    Mis poemas en ti se enfocarán,<br>
+    y al mencionarte una sonrisa me saldrá.<br><br>
+
+    Y lo nuestro… jamás terminará ❤️
+  </div>
+
+  <button class="rojo" onclick="ir(4)">Continuar 💘</button>
+</div>
+
+<!-- PANTALLA 4 -->
+<div class="pantalla" id="p4">
+  <h1 style="font-size:38px">¿Quieres ser mi San Valentín? 💘</h1>
+
+  <button id="si" class="rojo" onclick="ir(5)">SÍ ❤️</button>
+  <button onmouseover="crecer()">NO 🙃</button>
+</div>
+
+<!-- PANTALLA 5 FINAL -->
+<div class="pantalla" id="p5">
+  <h1>💖 TE AMO 💖</h1>
+
+  <div class="final">
+    <span>Te amo ❤️</span>
+    <span>I love you ✨</span>
+    <span>Juntos por siempre ❤️</span>
+    <span>Te adoro ✨</span>
+    <span>Mi vida ❤️</span>
+    <span>Para siempre ✨</span>
+  </div>
+</div>
+
+<script>
+function ir(n){
+  document.getElementById("music").play();
+  document.querySelectorAll(".pantalla").forEach(p=>p.classList.remove("activa"));
+  document.getElementById("p"+n).classList.add("activa");
+}
+
+function crecer(){
+  document.getElementById("si").style.transform="scale(1.4)";
+}
+
+// CONTADOR DESDE 15 MARZO 2025
+const inicio = new Date("2025-03-15");
+
+setInterval(()=>{
+  const ahora=new Date();
+  const diff=ahora-inicio;
+
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor(diff/3600000)%24;
+  const m=Math.floor(diff/60000)%60;
+  const s=Math.floor(diff/1000)%60;
+
+  const c=document.getElementById("contador");
+  if(c)c.innerHTML=`${d} días ${h}h ${m}m ${s}s ❤️`;
+},1000);
+</script>
+
+</body>
+</html>
